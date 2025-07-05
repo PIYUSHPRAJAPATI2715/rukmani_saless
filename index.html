@@ -7,7 +7,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
   <style>
     /* RESET & GLOBALS */
-    * {margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;scroll-behavior:smooth;}
+    *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;scroll-behavior:smooth;}
     body{background:linear-gradient(135deg,#fff8e1 0%,#ffecb3 50%,#ffe082 100%);color:#3e2723;overflow-x:hidden;}
 
     /* HEADER */
@@ -32,14 +32,17 @@
     section h2{font-size:40px;font-weight:700;margin-bottom:40px;text-align:center;position:relative;}
     section h2::after{content:"";position:absolute;left:50%;transform:translateX(-50%);bottom:-12px;width:60px;height:4px;background:#f57f17;border-radius:2px;}
 
+    /* CATEGORY HEADINGS */
+    .cat-title{font-size:28px;font-weight:600;margin:50px 0 20px;color:#bf360c;text-align:left;grid-column:1/-1;}
+
     /* PRODUCT GRID */
-    .products{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:30px;}
-    .product-card{background:#fffde7;border-radius:18px;padding:24px;text-align:center;box-shadow:0 8px 25px rgba(0,0,0,.08);transition:.4s;position:relative;overflow:hidden;}
+    .products{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:30px;}
+    .product-card{background:#fffde7;border-radius:18px;padding:60px 24px 32px;text-align:center;box-shadow:0 8px 25px rgba(0,0,0,.08);transition:.4s;position:relative;overflow:hidden;min-height:430px;display:flex;flex-direction:column;justify-content:flex-start;}
     .product-card:hover{transform:translateY(-8px);box-shadow:0 12px 28px rgba(0,0,0,.15);} 
-    .product-card img{width:100%;height:160px;object-fit:cover;border-radius:12px;margin-bottom:16px;transition:.5s;}
-    .product-card:hover img{transform:scale(1.1) rotate(-1deg);} 
+    .product-card img{width:100%;aspect-ratio:1/1;object-fit:contain;background:#fff;border-radius:12px;margin-bottom:16px;transition:.5s;}
+    .product-card:hover img{transform:scale(1.05);} 
     .product-card h3{font-size:20px;font-weight:600;margin-bottom:8px;}
-    .badge{position:absolute;top:20px;right:-50px;transform:rotate(45deg);background:#f57f17;color:#fff;padding:6px 60px;font-size:12px;font-weight:600;box-shadow:0 4px 10px rgba(0,0,0,.15);} 
+    .badge{position:absolute;top:0;right:-48px;transform:translateY(40%) rotate(45deg);background:#f57f17;color:#fff;padding:6px 70px;font-size:12px;font-weight:600;box-shadow:0 4px 10px rgba(0,0,0,.15);pointer-events:none;}
 
     /* CONTACT */
     .contact{background:#ffe082;border-radius:20px;padding:40px;text-align:center;margin-top:60px;box-shadow:0 10px 25px rgba(0,0,0,.1);} 
@@ -84,58 +87,69 @@
 
   <!-- PRODUCTS -->
   <section id="products">
-    <h2>Our Best‑Sellers</h2>
-
+    <h2>Trending Products</h2>
     <div class="products">
-      <!-- NAMKEEN VARIETIES -->
+      <!-- NAMKEEN CATEGORY -->
+      <h3 class="cat-title">Namkeen</h3>
+
       <div class="product-card"><span class="badge">Namkeen</span>
-        <img src="https://images.unsplash.com/photo-1622449232854-5195444d9a18?auto=format&fit=crop&w=800&q=80" alt="Aloo Bhujia">
+        <img src="https://madeinbikaner.com/cdn/shop/files/aloobhujia.jpg?v=1713936475&width=800" alt="Aloo Bhujia">
         <h3>Aloo Bhujia</h3>
-        <p>Golden & spicy potato noodles.</p>
-      </div>
-      <div class="product-card"><span class="badge">Namkeen</span>
-        <img src="https://images.unsplash.com/photo-1636557302095-3f93aa8e63c8?auto=format&fit=crop&w=800&q=80" alt="Moong Dal">
-        <h3>Moong Dal</h3>
-        <p>Crispy fried lentil crunch.</p>
-      </div>
-      <div class="product-card"><span class="badge">Namkeen</span>
-        <img src="https://images.unsplash.com/photo-1602061990903-722f65aeb88b?auto=format&fit=crop&w=800&q=80" alt="Masala Sev">
-        <h3>Masala Sev</h3>
-        <p>Spiced gram‑flour noodles.</p>
-      </div>
-      <div class="product-card"><span class="badge">Namkeen</span>
-        <img src="https://images.unsplash.com/photo-1628309713432-2124a9361ff1?auto=format&fit=crop&w=800&q=80" alt="Mix Namkeen">
-        <h3>Mix Namkeen</h3>
-        <p>Perfect tea‑time mixture.</p>
+        <p>Spicy potato‑based crunchy sev.</p>
       </div>
 
-      <!-- SWEETS -->
-      <div class="product-card"><span class="badge">Sweet</span>
-        <img src="https://images.unsplash.com/photo-1518128958772-6e228e1ac824?auto=format&fit=crop&w=800&q=80" alt="Rasgulla">
-        <h3>Rasgulla</h3>
-        <p>Soft cottage‑cheese balls in syrup.</p>
+      <div class="product-card"><span class="badge">Namkeen</span>
+        <img src="https://5.imimg.com/data5/SELLER/Default/2024/4/412827624/AT/AV/ZJ/892814/bhujia-400-g-500x500.png" alt="Bhujia Mix">
+        <h3>Bikaneri Bhujia</h3>
+        <p>Authentic gram‑flour savoury mix.</p>
       </div>
+
+      <div class="product-card"><span class="badge">Namkeen</span>
+        <img src="https://madeinbikaner.com/cdn/shop/files/allinone.jpg?auto=format&fit=crop&w=800&q=80" alt="KuchKuch">
+        <h3>All In One</h3>
+        <p>Chatpata anytime crunchy bites.</p>
+      </div>
+
+      <!-- SWEETS CATEGORY -->
+      <h3 class="cat-title">Sweets</h3>
+
       <div class="product-card"><span class="badge">Sweet</span>
-              <img src="https://madeinbikaner.com/cdn/shop/files/1_ed129e12-21e2-4224-9258-1e49f3069636.png?v=1737630840&width=535" alt="UTTAM ATM BATI BOX">
+        <img src="https://madeinbikaner.com/cdn/shop/files/1_0c83160c-6682-491c-8166-588fd8515fbc.png?v=1738311662&width=800" alt="Gulab Jamun">
         <h3>Gulab Jamun</h3>
-        <p>Melt‑in‑mouth khoya dumplings.</p>
+        <p>Soft khoya dumplings in syrup.</p>
       </div>
 
-      <!-- COLD DRINKS -->
-      <div class="product-card"><span class="badge">Drink</span>
-        <img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=800&q=80" alt="Cola">
-        <h3>Cola (500ml)</h3>
-        <p>Classic fizzy refreshment.</p>
+      <div class="product-card"><span class="badge">Sweet</span>
+        <img src="https://madeinbikaner.com/cdn/shop/files/1_ed129e12-21e2-4224-9258-1e49f3069636.png?v=1737630840&width=800" alt="Kesar Bati">
+        <h3>Kesar Baati</h3>
+        <p>Saffron‑infused bati delights.</p>
       </div>
-      <div class="product-card"><span class="badge">Drink</span>
-        <img src="https://images.unsplash.com/photo-1627737842040-1d399a8ce28e?auto=format&fit=crop&w=800&q=80" alt="Orange Soda">
-        <h3>Orange Soda</h3>
-        <p>Tangy & bubbly orange drink.</p>
+
+      <div class="product-card"><span class="badge">Sweet</span>
+        <img src="https://madeinbikaner.com/cdn/shop/files/1_6f25202f-6b74-4d54-a477-b4be4635c1e7.png?v=1738233334&width=800" alt="Rajbhog">
+        <h3>Rajbhog</h3>
+        <p>Royal saffron‑flavored rasgulla.</p>
       </div>
+
+      <!-- COLD DRINKS CATEGORY -->
+      <h3 class="cat-title">Cold Drinks</h3>
+
       <div class="product-card"><span class="badge">Drink</span>
-        <img src="https://images.unsplash.com/photo-1599620356500-905f3d3833b7?auto=format&fit=crop&w=800&q=80" alt="Mango Juice">
-        <h3>Mango Juice</h3>
-        <p>Real alphonso mango goodness.</p>
+        <img src="https://m.media-amazon.com/images/I/710jZoI2iEL.jpg" alt="LAHORI ZEERA">
+        <h3>LAHORI ZEERA</h3>
+        <p>Apna Desi Thanda (160ml PET).</p>
+      </div>
+
+      <div class="product-card"><span class="badge">Drink</span>
+        <img src="https://lahorizeera.com/cdn/shop/files/Lahori_Nimboo_160ml.png?crop=center&height=1200&v=1721297570&width=1200" alt="Lahori Nimboo">
+        <h3>Lahori Nimboo</h3>
+        <p>Apna Desi Thanda (160ml PET).</p>
+      </div>
+
+      <div class="product-card"><span class="badge">Drink</span>
+        <img src="https://d2n7tchuu1wmsv.cloudfront.net/uploads/21957/products/1658854519_900053.jpg" alt="LAHORI KACHA AAM">
+        <h3>LAHORI KACHA AAM</h3>
+        <p>Apna Desi Thanda (160ml PET).</p>
       </div>
     </div>
   </section>
@@ -143,14 +157,14 @@
   <!-- DELIVERY INFO -->
   <section id="delivery">
     <h2>Doorstep Delivery</h2>
-    <p style="text-align:center;font-size:20px;max-width:800px;margin:0 auto;">Order online or via call &mdash; we deliver across Shahpura & Jaipur. Freshness guaranteed, bulk or retail!</p>
+    <p style="text-align:center;font-size:20px;max-width:800px;margin:0 auto;">Order online or via call — we deliver across Shahpura & Jaipur. Freshness guaranteed, bulk or retail!</p>
   </section>
 
   <!-- CONTACT -->
   <section id="contact">
     <h2>Get in Touch</h2>
     <div class="contact">
-      <p><strong>Address:</strong> Old Delhi Road, Shahpura, Jaipur 302021, Near Sadhna Petrol Pump</p>
+      <p><strong>Address:</strong> Old Delhi Road, Shahpura, Jaipur 302021, Near Sadhna Petrol Pump</p>
       <p><strong>Phone:</strong> <a href="tel:8278624571">8278624571</a></p>
       <p><strong>Email:</strong> <a href="mailto:orders@rukmanisales.com">orders@rukmanisales.com</a></p>
     </div>
@@ -158,7 +172,7 @@
 
   <!-- FOOTER -->
   <footer>
-    &copy; 2025&nbsp;Rukmani Sales &bull; Crafted with 💛 in Rajasthan
+    &copy; 2025 Rukmani Sales • Crafted with 💛 in Rajasthan
   </footer>
 </body>
 </html>
