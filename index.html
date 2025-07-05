@@ -4,71 +4,80 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Rukmani Sales | Namkeen • Sweets • Cold Drinks</title>
+
+  <!-- FONTS & RAZORPAY -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+  <!-- ==================  STYLE (unchanged)  ================== -->
   <style>
     /* RESET & GLOBALS */
     *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;scroll-behavior:smooth;}
     body{background:linear-gradient(135deg,#fff8e1 0%,#ffecb3 50%,#ffe082 100%);color:#3e2723;overflow-x:hidden;}
-
     /* HEADER */
-    header{position:sticky;top:0;z-index:99;background:rgba(251,192,45,.9);backdrop-filter:blur(4px);padding:18px 50px;display:flex;justify-content:space-between;align-items:center;animation:slideInDown .8s ease;box-shadow:0 8px 20px rgba(0,0,0,.08);} 
+    header{position:sticky;top:0;z-index:99;background:rgba(251,192,45,.9);backdrop-filter:blur(4px);padding:18px 50px;display:flex;justify-content:space-between;align-items:center;animation:slideInDown .8s ease;box-shadow:0 8px 20px rgba(0,0,0,.08);}
     .logo{font-size:32px;font-weight:700;color:#fff;letter-spacing:1px;}
     nav a{color:#fff;margin-left:24px;text-decoration:none;font-weight:500;position:relative;}
     nav a::after{content:"";position:absolute;left:0;bottom:-4px;width:0;height:2px;background:#3e2723;transition:.3s;}
     nav a:hover::after{width:100%;}
-
     /* HERO */
     .hero{min-height:80vh;padding:100px 50px 80px;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;background:url('https://images.unsplash.com/photo-1600628671181-c9c4dfeae5ba?auto=format&fit=crop&w=1600&q=80') center/cover fixed;position:relative;animation:fadeIn 1.5s ease;}
-    .hero::before{content:"";position:absolute;inset:0;background:rgba(0,0,0,.55);} 
-    .hero>*{position:relative;color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.8);} 
+    .hero::before{content:"";position:absolute;inset:0;background:rgba(0,0,0,.55);}
+    .hero>*{position:relative;color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.8);}
     .hero h1{font-size:58px;font-weight:700;line-height:1.1;margin-bottom:18px;}
     .hero p{font-size:22px;font-weight:300;max-width:500px;}
-    .cta-btn{margin-top:30px;padding:14px 28px;border:none;border-radius:50px;background:#fbc02d;color:#3e2723;font-weight:600;font-size:18px;cursor:pointer;transition:.3s;box-shadow:0 6px 18px rgba(0,0,0,.2);} 
-    .cta-btn:hover{transform:translateY(-3px);box-shadow:0 10px 24px rgba(0,0,0,.25);} 
-
+    .cta-btn{margin-top:30px;padding:14px 28px;border:none;border-radius:50px;background:#fbc02d;color:#3e2723;font-weight:600;font-size:18px;cursor:pointer;transition:.3s;box-shadow:0 6px 18px rgba(0,0,0,.2);}
+    .cta-btn:hover{transform:translateY(-3px);box-shadow:0 10px 24px rgba(0,0,0,.25);}
     /* SECTIONS */
-    section{padding:70px 50px;animation:fadeInUp 1s ease forwards;opacity:0;transform:translateY(40px);} 
-    section.visible{opacity:1;transform:translateY(0);} 
+    section{padding:70px 50px;animation:fadeInUp 1s ease forwards;opacity:0;transform:translateY(40px);}
+    section.visible{opacity:1;transform:translateY(0);}
     section h2{font-size:40px;font-weight:700;margin-bottom:40px;text-align:center;position:relative;}
     section h2::after{content:"";position:absolute;left:50%;transform:translateX(-50%);bottom:-12px;width:60px;height:4px;background:#f57f17;border-radius:2px;}
-
-    /* CATEGORY HEADINGS */
     .cat-title{font-size:28px;font-weight:600;margin:50px 0 20px;color:#bf360c;text-align:left;grid-column:1/-1;}
-
     /* PRODUCT GRID */
     .products{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:30px;}
-    .product-card{background:#fffde7;border-radius:18px;padding:60px 24px 32px;text-align:center;box-shadow:0 8px 25px rgba(0,0,0,.08);transition:.4s;position:relative;overflow:hidden;min-height:430px;display:flex;flex-direction:column;justify-content:flex-start;}
-    .product-card:hover{transform:translateY(-8px);box-shadow:0 12px 28px rgba(0,0,0,.15);} 
+    .product-card{border-radius:18px;padding:60px 24px 32px;text-align:center;box-shadow:0 8px 25px rgba(0,0,0,.08);transition:.4s;position:relative;overflow:hidden;min-height:500px;display:flex;flex-direction:column;justify-content:flex-start;align-items:center;}
+    .product-card:hover{transform:translateY(-8px);box-shadow:0 12px 28px rgba(0,0,0,.15);}
     .product-card img{width:100%;aspect-ratio:1/1;object-fit:contain;background:#fff;border-radius:12px;margin-bottom:16px;transition:.5s;}
-    .product-card:hover img{transform:scale(1.05);} 
+    .product-card:hover img{transform:scale(1.05);}
     .product-card h3{font-size:20px;font-weight:600;margin-bottom:8px;}
-    .badge{position:absolute;top:0;right:-48px;transform:translateY(40%) rotate(45deg);background:#f57f17;color:#fff;padding:6px 70px;font-size:12px;font-weight:600;box-shadow:0 4px 10px rgba(0,0,0,.15);pointer-events:none;}
-
-    /* CONTACT */
-    .contact{background:#ffe082;border-radius:20px;padding:40px;text-align:center;margin-top:60px;box-shadow:0 10px 25px rgba(0,0,0,.1);} 
-    .contact p{margin-bottom:10px;font-size:18px;}
-    .contact a{color:#3e2723;font-weight:600;text-decoration:none;}
-
-    /* FOOTER */
-    footer{background:#fbc02d;text-align:center;padding:22px;font-weight:500;color:#3e2723;}
-
-    /* ANIMATIONS */
-    @keyframes slideInDown{0%{transform:translateY(-100%);opacity:0;}100%{transform:translateY(0);opacity:1;}} 
-    @keyframes fadeIn{from{opacity:0;}to{opacity:1;}} 
-    @keyframes fadeInUp{from{opacity:0;transform:translateY(60px);}to{opacity:1;transform:translateY(0);}} 
+    /* CATEGORY COLORS */
+    .product-card.namkeen{background:#fffde7;}
+    .product-card.sweet  {background:#fff2fb;}
+    .product-card.drink  {background:#e8f6ff;}
+    /* BADGES */
+    .badge{position:absolute;top:0;right:-48px;transform:translateY(40%) rotate(45deg);color:#fff;padding:6px 70px;font-size:12px;font-weight:600;box-shadow:0 4px 10px rgba(0,0,0,.15);pointer-events:none;}
+    .badge.namkeen{background:#f57f17;}
+    .badge.sweet  {background:#c2185b;}
+    .badge.drink  {background:#0277bd;}
+    /* QTY & BUY */
+    .qty-selector{display:flex;align-items:center;margin:12px 0;}
+    .qty-btn{background:#fbc02d;border:none;width:34px;height:34px;border-radius:50%;font-size:20px;font-weight:600;color:#3e2723;cursor:pointer;box-shadow:0 4px 10px rgba(0,0,0,.15);transition:.2s;}
+    .qty-btn:hover{transform:translateY(-2px);}
+    .qty-input{width:48px;text-align:center;border:none;font-weight:600;font-size:16px;background:transparent;pointer-events:none;color:#3e2723;}
+    .buy-btn{margin-top:auto;padding:12px 20px;border:none;border-radius:40px;background:#e65100;color:#fff;font-weight:600;font-size:16px;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,.18);transition:.3s;}
+    .buy-btn:hover{transform:translateY(-3px);box-shadow:0 10px 24px rgba(0,0,0,.25);}
+    /* MODAL & SUCCESS */
+    .modal{position:fixed;top:0;left:0;width:100%;height:100%;display:flex;justify-content:center;align-items:center;background:rgba(0,0,0,.6);visibility:hidden;opacity:0;transition:.3s;z-index:999;}
+    .modal.active{visibility:visible;opacity:1;}
+    .modal-content{background:#fffde7;padding:30px 26px 40px;border-radius:20px;max-width:400px;width:90%;text-align:center;box-shadow:0 10px 25px rgba(0,0,0,.25);animation:zoomIn .4s ease;}
+    .modal-content h4{margin-bottom:18px;font-size:22px;color:#bf360c;}
+    .modal-content button{display:block;width:100%;margin:10px 0;padding:12px;border:none;border-radius:30px;font-weight:600;font-size:16px;cursor:pointer;transition:.25s;}
+    .pay-btn{background:#43a047;color:#fff;}
+    .cod-btn{background:#e65100;color:#fff;}
+    .close-btn{background:#bdbdbd;color:#3e2723;}
+    .modal-content button:hover{transform:translateY(-2px);}
+    .success{display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#dcedc8;padding:30px 40px;border-radius:20px;box-shadow:0 10px 25px rgba(0,0,0,.25);z-index:1000;text-align:center;animation:zoomIn .4s ease;}
+    .success h4{font-size:22px;color:#2e7d32;margin-bottom:10px;}
+    .success p{font-size:16px;color:#33691e;}
+    @keyframes slideInDown{0%{transform:translateY(-100%);opacity:0;}100%{transform:translateY(0);opacity:1;}}
+    @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+    @keyframes fadeInUp{from{opacity:0;transform:translateY(60px);}to{opacity:1;transform:translateY(0);}}
+    @keyframes zoomIn{from{transform:scale(.7);}to{transform:scale(1);}}
   </style>
-  <script>
-    // IntersectionObserver to trigger section animations
-    document.addEventListener('DOMContentLoaded',()=>{
-      const observer=new IntersectionObserver(entries=>{
-        entries.forEach(entry=>{if(entry.isIntersecting)entry.target.classList.add('visible');});
-      },{threshold:0.1});
-      document.querySelectorAll('section').forEach(sec=>observer.observe(sec));
-    });
-  </script>
 </head>
 <body>
-  <!-- HEADER -->
+  <!-- =================  HEADER  ================= -->
   <header>
     <div class="logo">Rukmani Sales</div>
     <nav>
@@ -78,101 +87,307 @@
     </nav>
   </header>
 
-  <!-- HERO -->
+  <!-- =================  HERO  ================= -->
   <section class="hero">
     <h1>Taste That Brings Smiles</h1>
     <p>Authentic Namkeen, Delightful Sweets & Refreshing Cold Drinks — Wholesale & Online Delivery</p>
     <button class="cta-btn" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">Browse Products</button>
   </section>
 
-  <!-- PRODUCTS -->
+  <!-- =================  PRODUCTS  ================= -->
   <section id="products">
     <h2>Trending Products</h2>
     <div class="products">
-      <!-- NAMKEEN CATEGORY -->
+      <!-- Namkeen Category -->
       <h3 class="cat-title">Namkeen</h3>
 
-      <div class="product-card"><span class="badge">Namkeen</span>
+      <div class="product-card namkeen" data-price="1">
+        <span class="badge namkeen">Namkeen</span>
         <img src="https://madeinbikaner.com/cdn/shop/files/aloobhujia.jpg?v=1713936475&width=800" alt="Aloo Bhujia">
-        <h3>Aloo Bhujia</h3>
+        <h3 class="item-name">Aloo Bhujia</h3>
         <p>Spicy potato‑based crunchy sev.</p>
+        <p class="price">₹1</p>
+
+        <div class="qty-selector">
+          <button class="qty-btn minus">-</button>
+          <input class="qty-input" value="1" readonly>
+          <button class="qty-btn plus">+</button>
+        </div>
+        <button class="buy-btn">Buy Now</button>
       </div>
 
-      <div class="product-card"><span class="badge">Namkeen</span>
-        <img src="https://5.imimg.com/data5/SELLER/Default/2024/4/412827624/AT/AV/ZJ/892814/bhujia-400-g-500x500.png" alt="Bhujia Mix">
-        <h3>Bikaneri Bhujia</h3>
+      <div class="product-card namkeen" data-price="110">
+        <span class="badge namkeen">Namkeen</span>
+        <img src="https://5.imimg.com/data5/SELLER/Default/2024/4/412827624/AT/AV/ZJ/892814/bhujia-400-g-500x500.png" alt="Bikaneri Bhujia">
+        <h3 class="item-name">Bikaneri Bhujia</h3>
         <p>Authentic gram‑flour savoury mix.</p>
+        <p class="price">₹110</p>
+
+        <div class="qty-selector">
+          <button class="qty-btn minus">-</button>
+          <input class="qty-input" value="1" readonly>
+          <button class="qty-btn plus">+</button>
+        </div>
+        <button class="buy-btn">Buy Now</button>
       </div>
 
-      <div class="product-card"><span class="badge">Namkeen</span>
-        <img src="https://madeinbikaner.com/cdn/shop/files/allinone.jpg?auto=format&fit=crop&w=800&q=80" alt="KuchKuch">
-        <h3>All In One</h3>
+      <div class="product-card namkeen" data-price="100">
+        <span class="badge namkeen">Namkeen</span>
+        <img src="https://madeinbikaner.com/cdn/shop/files/allinone.jpg?auto=format&fit=crop&w=800&q=80" alt="All In One Mix">
+        <h3 class="item-name">All In One</h3>
         <p>Chatpata anytime crunchy bites.</p>
+        <p class="price">₹100</p>
+
+        <div class="qty-selector">
+          <button class="qty-btn minus">-</button>
+          <input class="qty-input" value="1" readonly>
+          <button class="qty-btn plus">+</button>
+        </div>
+        <button class="buy-btn">Buy Now</button>
       </div>
 
-      <!-- SWEETS CATEGORY -->
+      <!-- Sweets Category -->
       <h3 class="cat-title">Sweets</h3>
 
-      <div class="product-card"><span class="badge">Sweet</span>
+      <div class="product-card sweet" data-price="180">
+        <span class="badge sweet">Sweet</span>
         <img src="https://madeinbikaner.com/cdn/shop/files/1_0c83160c-6682-491c-8166-588fd8515fbc.png?v=1738311662&width=800" alt="Gulab Jamun">
-        <h3>Gulab Jamun</h3>
+        <h3 class="item-name">Gulab Jamun</h3>
         <p>Soft khoya dumplings in syrup.</p>
+        <p class="price">₹180</p>
+
+        <div class="qty-selector">
+          <button class="qty-btn minus">-</button>
+          <input class="qty-input" value="1" readonly>
+          <button class="qty-btn plus">+</button>
+        </div>
+        <button class="buy-btn">Buy Now</button>
       </div>
 
-      <div class="product-card"><span class="badge">Sweet</span>
-        <img src="https://madeinbikaner.com/cdn/shop/files/1_ed129e12-21e2-4224-9258-1e49f3069636.png?v=1737630840&width=800" alt="Kesar Bati">
-        <h3>Kesar Baati</h3>
+      <div class="product-card sweet" data-price="200">
+        <span class="badge sweet">Sweet</span>
+        <img src="https://madeinbikaner.com/cdn/shop/files/1_ed129e12-21e2-4224-9258-1e49f3069636.png?v=1737630840&width=800" alt="Kesar Baati">
+        <h3 class="item-name">Kesar Baati</h3>
         <p>Saffron‑infused bati delights.</p>
+        <p class="price">₹200</p>
+
+        <div class="qty-selector">
+          <button class="qty-btn minus">-</button>
+          <input class="qty-input" value="1" readonly>
+          <button class="qty-btn plus">+</button>
+        </div>
+        <button class="buy-btn">Buy Now</button>
       </div>
 
-      <div class="product-card"><span class="badge">Sweet</span>
+      <div class="product-card sweet" data-price="190">
+        <span class="badge sweet">Sweet</span>
         <img src="https://madeinbikaner.com/cdn/shop/files/1_6f25202f-6b74-4d54-a477-b4be4635c1e7.png?v=1738233334&width=800" alt="Rajbhog">
-        <h3>Rajbhog</h3>
+        <h3 class="item-name">Rajbhog</h3>
         <p>Royal saffron‑flavored rasgulla.</p>
+        <p class="price">₹190</p>
+
+        <div class="qty-selector">
+          <button class="qty-btn minus">-</button>
+          <input class="qty-input" value="1" readonly>
+          <button class="qty-btn plus">+</button>
+        </div>
+        <button class="buy-btn">Buy Now</button>
       </div>
 
-      <!-- COLD DRINKS CATEGORY -->
+      <!-- Cold Drink Category -->
       <h3 class="cat-title">Cold Drinks</h3>
 
-      <div class="product-card"><span class="badge">Drink</span>
-        <img src="https://m.media-amazon.com/images/I/710jZoI2iEL.jpg" alt="LAHORI ZEERA">
-        <h3>LAHORI ZEERA</h3>
+      <div class="product-card drink" data-price="30">
+        <span class="badge drink">Drink</span>
+        <img src="https://m.media-amazon.com/images/I/710jZoI2iEL.jpg" alt="Lahori Zeera">
+        <h3 class="item-name">Lahori Zeera</h3>
         <p>Apna Desi Thanda (160ml PET).</p>
+        <p class="price">₹30</p>
+
+        <div class="qty-selector">
+          <button class="qty-btn minus">-</button>
+          <input class="qty-input" value="1" readonly>
+          <button class="qty-btn plus">+</button>
+        </div>
+        <button class="buy-btn">Buy Now</button>
       </div>
 
-      <div class="product-card"><span class="badge">Drink</span>
+      <div class="product-card drink" data-price="30">
+        <span class="badge drink">Drink</span>
         <img src="https://lahorizeera.com/cdn/shop/files/Lahori_Nimboo_160ml.png?crop=center&height=1200&v=1721297570&width=1200" alt="Lahori Nimboo">
-        <h3>Lahori Nimboo</h3>
+        <h3 class="item-name">Lahori Nimboo</h3>
         <p>Apna Desi Thanda (160ml PET).</p>
+        <p class="price">₹30</p>
+
+        <div class="qty-selector">
+          <button class="qty-btn minus">-</button>
+          <input class="qty-input" value="1" readonly>
+          <button class="qty-btn plus">+</button>
+        </div>
+        <button class="buy-btn">Buy Now</button>
       </div>
 
-      <div class="product-card"><span class="badge">Drink</span>
-        <img src="https://d2n7tchuu1wmsv.cloudfront.net/uploads/21957/products/1658854519_900053.jpg" alt="LAHORI KACHA AAM">
-        <h3>LAHORI KACHA AAM</h3>
+      <div class="product-card drink" data-price="30">
+        <span class="badge drink">Drink</span>
+        <img src="https://d2n7tchuu1wmsv.cloudfront.net/uploads/21957/products/1658854519_900053.jpg" alt="Lahori Kacha Aam">
+        <h3 class="item-name">Lahori Kacha Aam</h3>
         <p>Apna Desi Thanda (160ml PET).</p>
+        <p class="price">₹30</p>
+
+        <div class="qty-selector">
+          <button class="qty-btn minus">-</button>
+          <input class="qty-input" value="1" readonly>
+          <button class="qty-btn plus">+</button>
+        </div>
+        <button class="buy-btn">Buy Now</button>
       </div>
     </div>
   </section>
 
-  <!-- DELIVERY INFO -->
+  <!-- =================  DELIVERY & CONTACT  ================= -->
   <section id="delivery">
     <h2>Doorstep Delivery</h2>
-    <p style="text-align:center;font-size:20px;max-width:800px;margin:0 auto;">Order online or via call — we deliver across Shahpura & Jaipur. Freshness guaranteed, bulk or retail!</p>
+    <p style="text-align:center;font-size:20px;max-width:800px;margin:0 auto;">
+      Order online or via call — we deliver across Shahpura & Jaipur. Freshness guaranteed, bulk or retail!
+    </p>
   </section>
 
-  <!-- CONTACT -->
   <section id="contact">
     <h2>Get in Touch</h2>
-    <div class="contact">
+    <div class="contact" style="background:#ffe082;border-radius:20px;padding:40px;text-align:center;margin-top:60px;box-shadow:0 10px 25px rgba(0,0,0,.1);">
       <p><strong>Address:</strong> Old Delhi Road, Shahpura, Jaipur 303103, Near Sadhna Petrol Pump</p>
-      <p><strong>Phone:</strong> <a href="tel:8278624571">8278624571</a></p>
+      <p><strong>Phone:</strong> <a href="tel:9549348495">9549348495</a></p>
       <p><strong>Email:</strong> <a href="mailto:orders@rukmanisales.com">orders@rukmanisales.com</a></p>
     </div>
   </section>
 
-  <!-- FOOTER -->
-  <footer>
+  <footer style="background:#fbc02d;text-align:center;padding:22px;font-weight:500;color:#3e2723;">
     &copy; 2025 Rukmani Sales • Crafted with 💛 in Rajasthan
   </footer>
+
+  <!-- ============  MODAL & SUCCESS POPUP  ============ -->
+  <div id="paymentModal" class="modal">
+    <div class="modal-content">
+      <h4 id="modalTitle">Confirm & Pay</h4>
+      <button class="pay-btn" id="upiPayBtn">Pay via UPI (Razorpay)</button>
+      <button class="cod-btn" id="codBtn">Pay on Delivery</button>
+      <button class="close-btn" id="closeModalBtn">Cancel</button>
+    </div>
+  </div>
+
+  <div id="successPopup" class="success">
+    <h4>Order Successful 🎉</h4>
+    <p>Thank you for shopping with Rukmani Sales!</p>
+  </div>
+
+  <!-- =================  SCRIPTS  ================= -->
+  <script>
+    /* =========  CONSTANTS  ========= */
+    const RAZORPAY_KEY   = 'rzp_live_LNZR89JqwRgbmd';   // ← replace if required
+    const WHATSAPP_TOKEN = 'yls7zjbopfs9npo9';
+    const INSTANCE_ID    = 'instance130248';
+    const WHATSAPP_TO    = '+919549348495';             // ← destination number
+
+    /* =====  SECTION REVEAL ON SCROLL  ===== */
+    document.addEventListener('DOMContentLoaded',()=>{
+      const io = new IntersectionObserver(entries=>{
+        entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible'); });
+      },{threshold:0.1});
+      document.querySelectorAll('section').forEach(sec=>io.observe(sec));
+    });
+
+    /* =====  QTY BUTTON HANDLERS  ===== */
+    document.querySelectorAll('.product-card').forEach(card=>{
+      const minus = card.querySelector('.minus');
+      const plus  = card.querySelector('.plus');
+      const qty   = card.querySelector('.qty-input');
+      minus.addEventListener('click',()=>{ let v=+qty.value; if(v>1) qty.value=v-1; });
+      plus.addEventListener('click',()=>{ qty.value=+qty.value+1; });
+    });
+
+    /* =====  PAYMENT MODAL OPEN / CLOSE  ===== */
+    const modal      = document.getElementById('paymentModal');
+    const modalTitle = document.getElementById('modalTitle');
+
+    function openModal(name, qty, price){
+      modalTitle.textContent = `Pay for ${name} (x${qty})`;
+      Object.assign(modal.dataset, {product:name, qty, price});
+      modal.classList.add('active');
+    }
+    function closeModal(){ modal.classList.remove('active'); }
+
+    document.getElementById('closeModalBtn').addEventListener('click', closeModal);
+
+    /* =====  BUY NOW CLICK  ===== */
+    document.querySelectorAll('.buy-btn').forEach(btn=>{
+      btn.addEventListener('click',e=>{
+        const card = e.target.closest('.product-card');
+        openModal(
+          card.querySelector('.item-name').textContent,
+          parseInt(card.querySelector('.qty-input').value),
+          parseFloat(card.dataset.price)
+        );
+      });
+    });
+
+    /* =====  SUCCESS POPUP  ===== */
+    const successPopup = document.getElementById('successPopup');
+    function showSuccess(){
+      successPopup.style.display='block';
+      setTimeout(()=>successPopup.style.display='none', 3000);
+    }
+
+    /* =====  WHATSAPP NOTIFICATION  ===== */
+    async function sendWhatsApp(prod, qty, mode='COD', payId=''){
+      const body =
+`🛒 *New Order Placed*
+Product : ${prod}
+Qty     : ${qty}
+Payment : ${mode}${payId ? `\nID      : ${payId}` : ''}`;
+
+      try{
+        await fetch(`https://api.ultramsg.com/${INSTANCE_ID}/messages/chat`,{
+          method:'POST',
+          headers:{'Content-Type':'application/x-www-form-urlencoded'},
+          body: new URLSearchParams({
+            token: WHATSAPP_TOKEN,
+            to:    WHATSAPP_TO,
+            body:  body
+          })
+        });
+        console.log('WhatsApp sent ✅');
+      }catch(err){
+        console.error('WhatsApp error:', err);
+      }
+    }
+
+    /* =====  COD BUTTON  ===== */
+    document.getElementById('codBtn').addEventListener('click',()=>{
+      const {product, qty} = modal.dataset;
+      closeModal(); showSuccess();
+      sendWhatsApp(product, qty, 'COD');
+    });
+
+    /* =====  RAZORPAY / UPI  ===== */
+    document.getElementById('upiPayBtn').addEventListener('click',()=>{
+      const {product, qty, price} = modal.dataset;
+      const amountPaise = Math.round(price * qty * 100);
+
+      const rzp = new Razorpay({
+        key: RAZORPAY_KEY,
+        amount: amountPaise,
+        currency: 'INR',
+        name: 'Rukmani Sales',
+        description: `${product} x${qty}`,
+        theme: {color:'#fbc02d'},
+        method: {upi:true},
+        handler: function (resp){
+          closeModal(); showSuccess();
+          sendWhatsApp(product, qty, 'UPI', resp.razorpay_payment_id);
+        }
+      });
+      rzp.open();
+    });
+  </script>
 </body>
 </html>
