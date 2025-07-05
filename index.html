@@ -18,12 +18,15 @@
     /* HEADER */
     header{position:sticky;top:0;z-index:98;background:rgba(251,192,45,.9);backdrop-filter:blur(4px);padding:18px 50px;display:flex;justify-content:space-between;align-items:center;animation:slideInDown .8s ease;box-shadow:0 8px 20px rgba(0,0,0,.08);}
     .logo{font-size:32px;font-weight:700;color:#fff;letter-spacing:1px;}
-    nav a{color:#fff;margin-left:24px;text-decoration:none;font-weight:500;position:relative;}
-    nav a::after{content:"";position:absolute;left:0;bottom:-4px;width:0;height:2px;background:#3e2723;transition:.3s;}
+    nav a{color:#fff;margin-right:94px;text-decoration:none;font-weight:500;position:relative;}
+    nav a::after{content:"";position:absolute;right:30;bottom:-4px;width:0;height:2px;background:#3e2723;transition:.3s;}
     nav a:hover::after{width:100%;}
 
-    /* PROFILE ICON */
-    #profileIcon{position:fixed;top:18px;right:18px;width:46px;height:46px;border-radius:50%;background:#f57f17;color:#fff;font-size:22px;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.25);z-index:99;display:none;user-select:none;}
+    /* PROFILE & CART ICONS */
+    #profileIcon,#cartIcon{position:fixed;top:18px;width:46px;height:46px;border-radius:50%;background:#f57f17;color:#fff;font-size:22px;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.25);z-index:99;user-select:none;}
+    #profileIcon{right:18px;display:none;}
+    #cartIcon{right:80px;}
+    #cartCount{position:absolute;top:-4px;right:-4px;background:#c2185b;color:#fff;font-size:12px;font-weight:600;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;}
 
     /* HERO */
     .hero{min-height:80vh;padding:100px 50px 80px;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;background:url('https://images.unsplash.com/photo-1600628671181-c9c4dfeae5ba?auto=format&fit=crop&w=1600&q=80') center/cover fixed;position:relative;animation:fadeIn 1.5s ease;}
@@ -43,7 +46,7 @@
 
     /* PRODUCT GRID */
     .products{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:30px;}
-    .product-card{border-radius:18px;padding:60px 24px 32px;text-align:center;box-shadow:0 8px 25px rgba(0,0,0,.08);transition:.4s;position:relative;overflow:hidden;min-height:500px;display:flex;flex-direction:column;justify-content:flex-start;align-items:center;}
+    .product-card{border-radius:18px;padding:60px 24px 32px;text-align:center;box-shadow:0 8px 25px rgba(0,0,0,.08);transition:.4s;position:relative;overflow:hidden;min-height:520px;display:flex;flex-direction:column;justify-content:flex-start;align-items:center;}
     .product-card:hover{transform:translateY(-8px);box-shadow:0 12px 28px rgba(0,0,0,.15);}
     .product-card img{width:100%;aspect-ratio:1/1;object-fit:contain;background:#fff;border-radius:12px;margin-bottom:16px;transition:.5s;}
     .product-card:hover img{transform:scale(1.05);}
@@ -60,18 +63,20 @@
     .badge.sweet  {background:#c2185b;}
     .badge.drink  {background:#0277bd;}
 
-    /* QTY & BUY */
+    /* QTY & ACTION BTNS */
     .qty-selector{display:flex;align-items:center;margin:12px 0;}
     .qty-btn{background:#fbc02d;border:none;width:34px;height:34px;border-radius:50%;font-size:20px;font-weight:600;color:#3e2723;cursor:pointer;box-shadow:0 4px 10px rgba(0,0,0,.15);transition:.2s;}
     .qty-btn:hover{transform:translateY(-2px);}
     .qty-input{width:48px;text-align:center;border:none;font-weight:600;font-size:16px;background:transparent;pointer-events:none;color:#3e2723;}
-    .buy-btn{margin-top:auto;padding:12px 20px;border:none;border-radius:40px;background:#e65100;color:#fff;font-weight:600;font-size:16px;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,.18);transition:.3s;}
-    .buy-btn:hover{transform:translateY(-3px);box-shadow:0 10px 24px rgba(0,0,0,.25);}
+    .buy-btn,.cart-btn{margin-top:auto;padding:12px 20px;border:none;border-radius:40px;font-weight:600;font-size:16px;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,.18);transition:.3s;width:100%;}
+    .buy-btn{background:#e65100;color:#fff;}
+    .cart-btn{background:#43a047;color:#fff;margin-top:10px;}
+    .buy-btn:hover,.cart-btn:hover{transform:translateY(-3px);box-shadow:0 10px 24px rgba(0,0,0,.25);}
 
-    /* MODAL & SUCCESS (generic) */
+    /* GENERIC MODAL */
     .modal{position:fixed;top:0;left:0;width:100%;height:100%;display:flex;justify-content:center;align-items:center;background:rgba(0,0,0,.6);visibility:hidden;opacity:0;transition:.3s;z-index:100;}
     .modal.active{visibility:visible;opacity:1;}
-    .modal-content{background:#fffde7;padding:30px 26px 40px;border-radius:20px;max-width:400px;width:90%;text-align:center;box-shadow:0 10px 25px rgba(0,0,0,.25);animation:zoomIn .4s ease;}
+    .modal-content{background:#fffde7;padding:30px 26px 40px;border-radius:20px;max-width:420px;width:90%;text-align:center;box-shadow:0 10px 25px rgba(0,0,0,.25);animation:zoomIn .4s ease;position:relative;}
     .modal-content h4{margin-bottom:18px;font-size:22px;color:#bf360c;}
     .modal-content button{display:block;width:100%;margin:10px 0;padding:12px;border:none;border-radius:30px;font-weight:600;font-size:16px;cursor:pointer;transition:.25s;}
     .pay-btn{background:#43a047;color:#fff;}
@@ -79,13 +84,14 @@
     .close-btn{background:#bdbdbd;color:#3e2723;}
     .modal-content button:hover{transform:translateY(-2px);}
 
-    /* INPUTS in auth modal */
-    .auth-input{margin:8px 0;padding:12px 14px;width:100%;border:1px solid #ccc;border-radius:10px;font-size:15px;}
-
     /* SUCCESS */
     .success{display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#dcedc8;padding:30px 40px;border-radius:20px;box-shadow:0 10px 25px rgba(0,0,0,.25);z-index:110;text-align:center;animation:zoomIn .4s ease;}
     .success h4{font-size:22px;color:#2e7d32;margin-bottom:10px;}
     .success p{font-size:16px;color:#33691e;}
+
+    /* CART LIST IN MODAL */
+    .cart-item{display:flex;justify-content:space-between;align-items:center;margin:8px 0;font-size:15px;}
+    .cart-item button{background:none;border:none;font-size:18px;cursor:pointer;color:#c2185b;}
 
     @keyframes slideInDown{0%{transform:translateY(-100%);opacity:0;}100%{transform:translateY(0);opacity:1;}}
     @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
@@ -100,27 +106,29 @@
     <nav>
       <a href="#products">Products</a>
       <a href="#delivery">Delivery</a>
-      <a href="#contact">Contact   </a>
+      <a href="#contact">Contact</a>
+
     </nav>
   </header>
 
-  <!-- Profile / Logout icon -->
+  <!-- Icons -->
+   <div id="cartIcon">🛒<span id="cartCount">0</span></div>
   <div id="profileIcon">👤</div>
 
   <!-- =================  HERO  ================= -->
   <section class="hero">
     <h1>Taste That Brings Smiles</h1>
-    <p>Authentic Namkeen, Delightful Sweets & Refreshing Cold Drinks — Wholesale & Online Delivery</p>
-    <button class="cta-btn" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">Browse Products</button>
+    <p>Authentic Namkeen, Delightful Sweets & Refreshing Cold Drinks — Wholesale & Online Delivery</p>
+    <button class="cta-btn" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">Browse Products</button>
   </section>
 
   <!-- =================  PRODUCTS  ================= -->
   <section id="products">
     <h2>Trending Products</h2>
     <div class="products">
+
       <!-- Namkeen Category -->
       <h3 class="cat-title">Namkeen</h3>
-
       <div class="product-card namkeen" data-price="1">
         <span class="badge namkeen">Namkeen</span>
         <img src="https://madeinbikaner.com/cdn/shop/files/aloobhujia.jpg?v=1713936475&width=800" alt="Aloo Bhujia">
@@ -133,6 +141,7 @@
           <input class="qty-input" value="1" readonly>
           <button class="qty-btn plus">+</button>
         </div>
+        <button class="cart-btn">Add to Cart</button>
         <button class="buy-btn">Buy Now</button>
       </div>
 
@@ -148,6 +157,7 @@
           <input class="qty-input" value="1" readonly>
           <button class="qty-btn plus">+</button>
         </div>
+        <button class="cart-btn">Add to Cart</button>
         <button class="buy-btn">Buy Now</button>
       </div>
 
@@ -163,12 +173,12 @@
           <input class="qty-input" value="1" readonly>
           <button class="qty-btn plus">+</button>
         </div>
+        <button class="cart-btn">Add to Cart</button>
         <button class="buy-btn">Buy Now</button>
       </div>
 
       <!-- Sweets Category -->
       <h3 class="cat-title">Sweets</h3>
-
       <div class="product-card sweet" data-price="180">
         <span class="badge sweet">Sweet</span>
         <img src="https://madeinbikaner.com/cdn/shop/files/1_0c83160c-6682-491c-8166-588fd8515fbc.png?v=1738311662&width=800" alt="Gulab Jamun">
@@ -181,6 +191,7 @@
           <input class="qty-input" value="1" readonly>
           <button class="qty-btn plus">+</button>
         </div>
+        <button class="cart-btn">Add to Cart</button>
         <button class="buy-btn">Buy Now</button>
       </div>
 
@@ -196,6 +207,7 @@
           <input class="qty-input" value="1" readonly>
           <button class="qty-btn plus">+</button>
         </div>
+        <button class="cart-btn">Add to Cart</button>
         <button class="buy-btn">Buy Now</button>
       </div>
 
@@ -211,12 +223,12 @@
           <input class="qty-input" value="1" readonly>
           <button class="qty-btn plus">+</button>
         </div>
+        <button class="cart-btn">Add to Cart</button>
         <button class="buy-btn">Buy Now</button>
       </div>
 
-      <!-- Cold Drink Category -->
+      <!-- Cold Drinks Category -->
       <h3 class="cat-title">Cold Drinks</h3>
-
       <div class="product-card drink" data-price="30">
         <span class="badge drink">Drink</span>
         <img src="https://m.media-amazon.com/images/I/710jZoI2iEL.jpg" alt="Lahori Zeera">
@@ -229,6 +241,7 @@
           <input class="qty-input" value="1" readonly>
           <button class="qty-btn plus">+</button>
         </div>
+        <button class="cart-btn">Add to Cart</button>
         <button class="buy-btn">Buy Now</button>
       </div>
 
@@ -244,6 +257,7 @@
           <input class="qty-input" value="1" readonly>
           <button class="qty-btn plus">+</button>
         </div>
+        <button class="cart-btn">Add to Cart</button>
         <button class="buy-btn">Buy Now</button>
       </div>
 
@@ -259,6 +273,7 @@
           <input class="qty-input" value="1" readonly>
           <button class="qty-btn plus">+</button>
         </div>
+        <button class="cart-btn">Add to Cart</button>
         <button class="buy-btn">Buy Now</button>
       </div>
     </div>
@@ -268,7 +283,7 @@
   <section id="delivery">
     <h2>Doorstep Delivery</h2>
     <p style="text-align:center;font-size:20px;max-width:800px;margin:0 auto;">
-      Order online or via call — we deliver across Shahpura & Jaipur. Freshness guaranteed, bulk or retail!
+      Order online or via call — we deliver across Shahpura & Jaipur. Freshness guaranteed, bulk or retail!
     </p>
   </section>
 
@@ -285,13 +300,24 @@
     &copy; 2025 Rukmani Sales • Crafted with 💛 in Rajasthan
   </footer>
 
-  <!-- ============  PAYMENT MODAL  ============ -->
+  <!-- ============  PAYMENT MODAL (single OR cart)  ============ -->
   <div id="paymentModal" class="modal">
     <div class="modal-content">
       <h4 id="modalTitle">Confirm & Pay</h4>
       <button class="pay-btn" id="upiPayBtn">Pay via UPI (Razorpay)</button>
       <button class="cod-btn" id="codBtn">Pay on Delivery</button>
       <button class="close-btn" id="closeModalBtn">Cancel</button>
+    </div>
+  </div>
+
+  <!-- ============  CART MODAL  ============ -->
+  <div id="cartModal" class="modal">
+    <div class="modal-content" style="max-width:480px;max-height:85vh;overflow:auto;">
+      <h4>Your Cart</h4>
+      <div id="cartItems"></div>
+      <p id="cartTotal" style="margin:14px 0;font-size:18px;font-weight:600;"></p>
+      <button class="pay-btn" id="cartCheckoutBtn">Checkout</button>
+      <button class="close-btn" id="closeCartBtn">Close</button>
     </div>
   </div>
 
@@ -329,7 +355,7 @@
   <!-- =================  SCRIPTS  ================= -->
   <script>
     /* =========  CONSTANTS  ========= */
-    const RAZORPAY_KEY   = 'rzp_live_LNZR89JqwRgbmd';   // ← replace if required
+    const RAZORPAY_KEY   = 'rzp_live_LNZR89JqwRgbmd';   // <-- replace if needed
     const WHATSAPP_TOKEN = 'yls7zjbopfs9npo9';
     const INSTANCE_ID    = 'instance130248';
     const WHATSAPP_TO    = '+919549348495';
@@ -340,69 +366,47 @@
     const loginForm   = document.getElementById('loginForm');
     const profileIcon = document.getElementById('profileIcon');
 
-    // switch forms
     const gotoLogin  = () => { signupForm.style.display='none'; loginForm.style.display='block';  document.getElementById('authTitle').textContent='Log in to continue';};
     const gotoSignup = () => { loginForm.style.display='none';  signupForm.style.display='block'; document.getElementById('authTitle').textContent='Create an account';};
 
     document.getElementById('gotoLogin').addEventListener('click', gotoLogin);
     document.getElementById('gotoSignup').addEventListener('click', gotoSignup);
 
-    // initial auth check
-    document.addEventListener('DOMContentLoaded', ()=>{
+    document.addEventListener('DOMContentLoaded', ()=>{      // check login
       const user = JSON.parse(localStorage.getItem('rukUser'));
       if(!user){ authModal.classList.add('active'); }
       else     { profileIcon.style.display='flex'; }
     });
 
-    /* ------ SIGNUP  ------ */
-    document.getElementById('signupBtn').addEventListener('click', ()=>{
+    document.getElementById('signupBtn').addEventListener('click', ()=>{  // SIGNUP
       const name  = document.getElementById('suName').value.trim();
       const phone = document.getElementById('suPhone').value.trim();
       const email = document.getElementById('suEmail').value.trim();
       const pass  = document.getElementById('suPass').value.trim();
-
       if(!name||!phone||!email||!pass){ alert('Please fill all fields'); return; }
-
       localStorage.setItem('rukUser', JSON.stringify({name,phone,email,pass}));
-      authModal.classList.remove('active');
-      profileIcon.style.display='flex';
+      authModal.classList.remove('active'); profileIcon.style.display='flex';
       alert('Signup successful 🎉');
     });
 
-    /* ------ LOGIN  ------ */
-    document.getElementById('loginBtn').addEventListener('click', ()=>{
+    document.getElementById('loginBtn').addEventListener('click', ()=>{   // LOGIN
       const id   = document.getElementById('liPhoneEmail').value.trim().toLowerCase();
       const pass = document.getElementById('liPass').value.trim();
       const user = JSON.parse(localStorage.getItem('rukUser'));
-
       if(!user){ alert('No account found. Please sign up.'); gotoSignup(); return; }
-
       if( (id===user.phone || id===user.email.toLowerCase()) && pass===user.pass ){
-        authModal.classList.remove('active');
-        profileIcon.style.display='flex';
-        alert('Login successful ✅');
-      }else{
-        alert('Incorrect credentials');
-      }
+        authModal.classList.remove('active'); profileIcon.style.display='flex'; alert('Login successful ✅');
+      }else{ alert('Incorrect credentials'); }
     });
 
-    /* ------ LOGOUT  ------ */
-    profileIcon.addEventListener('click', ()=>{
-      if(confirm('Logout from Rukmani Sales?')){
-        localStorage.removeItem('rukUser');
-        location.reload();
-      }
+    profileIcon.addEventListener('click', ()=>{               // LOGOUT
+      if(confirm('Logout from Rukmani Sales?')){ localStorage.removeItem('rukUser'); location.reload(); }
     });
 
-    /* =====  SECTION REVEAL ON SCROLL  ===== */
-    document.addEventListener('DOMContentLoaded',()=>{
-      const io = new IntersectionObserver(entries=>{
-        entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible'); });
-      },{threshold:0.1});
-      document.querySelectorAll('section').forEach(sec=>io.observe(sec));
-    });
+    /* =========  SECTION REVEAL  ========= */
+    document.addEventListener('DOMContentLoaded',()=>{ const io=new IntersectionObserver(e=>{e.forEach(x=>x.isIntersecting&&x.target.classList.add('visible'));},{threshold:0.1}); document.querySelectorAll('section').forEach(s=>io.observe(s)); });
 
-    /* =====  QTY BUTTON HANDLERS  ===== */
+    /* =========  QTY BUTTONS  ========= */
     document.querySelectorAll('.product-card').forEach(card=>{
       const minus = card.querySelector('.minus');
       const plus  = card.querySelector('.plus');
@@ -411,22 +415,85 @@
       plus.addEventListener('click',()=>{ qty.value=+qty.value+1; });
     });
 
-    /* =====  PAYMENT MODAL OPEN / CLOSE  ===== */
+    /* ================================================== */
+    /* ==================   CART LOGIC   ================ */
+    /* ================================================== */
+    let cart = JSON.parse(localStorage.getItem('rukCart')||'[]');
+
+    const cartIcon       = document.getElementById('cartIcon');
+    const cartCountSpan  = document.getElementById('cartCount');
+    const cartModal      = document.getElementById('cartModal');
+    const cartItemsDiv   = document.getElementById('cartItems');
+    const cartTotalTxt   = document.getElementById('cartTotal');
+
+    function saveCart(){ localStorage.setItem('rukCart', JSON.stringify(cart)); }
+    function cartTotal(){ return cart.reduce((sum,i)=>sum+i.price*i.qty,0); }
+    function updateCartCount(){ cartCountSpan.textContent = cart.reduce((s,i)=>s+i.qty,0); }
+
+    function addToCart(item){
+      const idx = cart.findIndex(x=>x.name===item.name);
+      if(idx>-1) cart[idx].qty += item.qty;
+      else cart.push(item);
+      saveCart(); updateCartCount(); alert('Added to cart 🛒');
+    }
+
+    function renderCart(){
+      if(!cart.length){ cartItemsDiv.innerHTML='<p style="text-align:center;">Cart is empty</p>'; cartTotalTxt.textContent=''; return; }
+      cartItemsDiv.innerHTML = cart.map((it,i)=>`
+        <div class="cart-item">
+          <span>${it.name} (x${it.qty})</span>
+          <span>₹${it.price*it.qty}</span>
+          <button data-i="${i}" title="Remove">✖</button>
+        </div>`).join('');
+      cartItemsDiv.querySelectorAll('button').forEach(btn=>{
+        btn.addEventListener('click',()=>{ cart.splice(btn.dataset.i,1); saveCart(); updateCartCount(); renderCart(); });
+      });
+      cartTotalTxt.textContent = 'Total : ₹'+cartTotal();
+    }
+
+    /* --------- Add to Cart buttons --------- */
+    document.querySelectorAll('.cart-btn').forEach(btn=>{
+      btn.addEventListener('click',e=>{
+        const card = e.target.closest('.product-card');
+        const item = {
+          name : card.querySelector('.item-name').textContent,
+          price: parseFloat(card.dataset.price),
+          qty  : parseInt(card.querySelector('.qty-input').value)
+        };
+        addToCart(item);
+      });
+    });
+
+    /* --------- Cart icon click --------- */
+    cartIcon.addEventListener('click',()=>{ renderCart(); cartModal.classList.add('active'); });
+
+    document.getElementById('closeCartBtn').addEventListener('click',()=>cartModal.classList.remove('active'));
+
+    /* ================================================== */
+    /* ============  SINGLE‑BUY PAYMENT LOGIC  ========== */
+    /* ================================================== */
     const modal      = document.getElementById('paymentModal');
     const modalTitle = document.getElementById('modalTitle');
-    function openModal(name, qty, price){
+
+    function openModalSingle(name, qty, price){
       modalTitle.textContent = `Pay for ${name} (x${qty})`;
-      Object.assign(modal.dataset, {product:name, qty, price});
+      Object.assign(modal.dataset, {type:'single', product:name, qty, price});
+      modal.classList.add('active');
+    }
+    function openModalCart(){
+      modalTitle.textContent = `Pay for ${cart.length} items`;
+      Object.assign(modal.dataset, {type:'cart', total:cartTotal()});
       modal.classList.add('active');
     }
     function closeModal(){ modal.classList.remove('active'); }
+
     document.getElementById('closeModalBtn').addEventListener('click', closeModal);
 
-    /* =====  BUY NOW CLICK  ===== */
+    /* Buy Now (single product) */
     document.querySelectorAll('.buy-btn').forEach(btn=>{
       btn.addEventListener('click',e=>{
         const card = e.target.closest('.product-card');
-        openModal(
+        openModalSingle(
           card.querySelector('.item-name').textContent,
           parseInt(card.querySelector('.qty-input').value),
           parseFloat(card.dataset.price)
@@ -434,22 +501,39 @@
       });
     });
 
-    /* =====  SUCCESS POPUP  ===== */
-    const successPopup = document.getElementById('successPopup');
-    function showSuccess(){
-      successPopup.style.display='block';
-      setTimeout(()=>successPopup.style.display='none', 3000);
-    }
+    /* Checkout from cart */
+    document.getElementById('cartCheckoutBtn').addEventListener('click',()=>{
+      if(!cart.length){ alert('Cart is empty'); return; }
+      cartModal.classList.remove('active'); openModalCart();
+    });
 
-    /* =====  WHATSAPP NOTIFICATION  ===== */
-    async function sendWhatsApp(prod, qty, mode='COD', payId=''){
-const user      = JSON.parse(localStorage.getItem('rukUser') || '{}');
-  const phoneLine = user.phone ? `\nContact : ${user.phone}` : '';
+    /* ================================================== */
+    /* ============  WHATSAPP NOTIFICATION  ============ */
+    /* ================================================== */
+    async function sendWhatsAppSingle(prod, qty, mode='COD', payId=''){
+      const user      = JSON.parse(localStorage.getItem('rukUser') || '{}');
+      const phoneLine = user.phone ? `\nContact : ${user.phone}` : '';
       const body =
 `🛒 *New Order Placed*
 Product : ${prod}
 Qty     : ${qty}
 Payment : ${mode}${payId ? `\nID      : ${payId}` : ''}${phoneLine}`;
+      await sendWhatsApp(body);
+    }
+
+    async function sendWhatsAppCart(mode='COD', payId=''){
+      const user      = JSON.parse(localStorage.getItem('rukUser') || '{}');
+      const phoneLine = user.phone ? `\nContact : ${user.phone}` : '';
+      const lines = cart.map(i=>`${i.name} x${i.qty} = ₹${i.price*i.qty}`).join('\n');
+      const body =
+`🛒 *New Cart Order*
+${lines}
+Total   : ₹${cartTotal()}
+Payment : ${mode}${payId ? `\nID      : ${payId}` : ''}${phoneLine}`;
+      await sendWhatsApp(body);
+    }
+
+    async function sendWhatsApp(body){
       try{
         await fetch(`https://api.ultramsg.com/${INSTANCE_ID}/messages/chat`,{
           method:'POST',
@@ -460,32 +544,55 @@ Payment : ${mode}${payId ? `\nID      : ${payId}` : ''}${phoneLine}`;
       }catch(err){ console.error('WhatsApp error:', err); }
     }
 
-    /* =====  COD BUTTON  ===== */
+    /* ================================================== */
+    /* =====  COD & RAZORPAY (single OR cart)  ========== */
+    /* ================================================== */
     document.getElementById('codBtn').addEventListener('click',()=>{
-      const {product, qty} = modal.dataset;
-      closeModal(); showSuccess();
-      sendWhatsApp(product, qty, 'COD');
+      if(modal.dataset.type==='single'){
+        const {product, qty}=modal.dataset;
+        closeModal(); showSuccess(); sendWhatsAppSingle(product, qty, 'COD');
+      }else{
+        closeModal(); showSuccess(); sendWhatsAppCart('COD'); cart=[]; saveCart(); updateCartCount();
+      }
     });
 
-    /* =====  RAZORPAY / UPI  ===== */
     document.getElementById('upiPayBtn').addEventListener('click',()=>{
-      const {product, qty, price} = modal.dataset;
-      const amountPaise = Math.round(price * qty * 100);
+      let amountPaise, description;
+
+      if(modal.dataset.type==='single'){
+        amountPaise = Math.round(modal.dataset.price * modal.dataset.qty * 100);
+        description = `${modal.dataset.product} x${modal.dataset.qty}`;
+      }else{
+        amountPaise = Math.round(modal.dataset.total * 100);
+        description = `Cart Purchase - ${cart.length} items`;
+      }
+
       const rzp = new Razorpay({
         key: RAZORPAY_KEY,
         amount: amountPaise,
         currency: 'INR',
         name: 'Rukmani Sales',
-        description: `${product} x${qty}`,
+        description,
         theme: {color:'#fbc02d'},
         method: {upi:true},
         handler: function (resp){
           closeModal(); showSuccess();
-          sendWhatsApp(product, qty, 'UPI', resp.razorpay_payment_id);
+          if(modal.dataset.type==='single'){
+            sendWhatsAppSingle(modal.dataset.product, modal.dataset.qty, 'UPI', resp.razorpay_payment_id);
+          }else{
+            sendWhatsAppCart('UPI', resp.razorpay_payment_id); cart=[]; saveCart(); updateCartCount();
+          }
         }
       });
       rzp.open();
     });
+
+    /* SUCCESS POPUP */
+    const successPopup = document.getElementById('successPopup');
+    function showSuccess(){ successPopup.style.display='block'; setTimeout(()=>successPopup.style.display='none', 3000); }
+
+    /* UPDATE CART COUNT INITIALLY */
+    updateCartCount();
   </script>
 </body>
 </html>
